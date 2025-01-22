@@ -1,97 +1,107 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 export default function Contact() {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
-  const onSubmit = async(data) => {
-    const userInfo={
-      name:data.name,
-      email:data.email,
-      message:data.message,
-
+  const onSubmit = async (data) => {
+    const userInfo = {
+      name: data.name,
+      email: data.email,
+      message: data.message,
     };
-    try{
-      await axios.post("https://getform.io/f/avrrjowa",userInfo);
-      toast.success("your message has been sent")
+    setIsLoading(true);
+    try {
+      await axios.post("https://getform.io/f/avrrjowa", userInfo);
+      toast.success("Your message has been sent!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
-    catch(error){
-      console.log(error);
-      toast.error("somthing went wrong");
-    }
-  }
+  };
+
   return (
-    <>
-      <div
-        name="Contact"
-        className="max-w-screen-2xl container md:px-20 md:mt-10 "
-      >
-        <h1 className="text-3xl font-semibold">Contact me</h1>
-        <span>Please fill out the form below to contact me</span>
-        <div className="flex flex-col items-center justify-center mt-5 my-5">
-          <form 
-          // action="https://getform.io/f/avrrjowa" 
-          //  method="POST" 
-           onSubmit={handleSubmit(onSubmit)}
-           
-            className="bg-slate-200  w-96 px-8 py-6 rounded-xl">
-            <h1 className="text-xl font-semibold mb-4">Send Your Message</h1>
-            <div  className=" flex flex-col mb-4 ">
-              <label htmlFor="" className="blcok text-gray-700">
-                FullName
-              </label>
-              <br />
-              <input
-              name="name"
-                type="text"
-                placeholder="Enter your full name"
-                className="shadow-lg px-2 py-3 rounded-lg "
-                {...register("name", { required: true })}
-              />
-               {errors.name && <span>This field is required</span>}
-            </div>
-            <div className=" flex flex-col mb-2 ">
-              <label htmlFor="" className="blcok text-gray-700">
-                Email
-              </label>
-              <br />
-              <input
-              name="email"
-                type="email"
-                placeholder="Enter your Eamil"
-                className="shadow-lg px-2 py-3 rounded-lg "
-                {...register("email", { required: true })}
-              />
-               {errors.email && <span>This field is required</span>}
-            </div>
-            <div className=" flex flex-col mb-4 ">
-              <label htmlFor="" className="blcok text-gray-700">
-                Message
-              </label>
-              <br />
-              <textarea
-               name="message"
-                type="text"
-                placeholder="Enter your Message"
-                className="shadow-lg px-2 py-3 rounded-lg "
-                {...register("message", { required: true })}
-              />
-               {errors.message && <span>This field is required</span>}
-            </div>
-            <button type="submit" className="text-lg font-semibold bg-black hover:bg-gray-700 text-white px-2 py-1 rounded-lg">
-              {" "}
-              Send
-            </button>
-          </form>
-        </div>
+    <div name="Contact" className="max-w-screen-2xl container mx-auto px-4 md:px-20 md:mt-10">
+      <h1 className="text-3xl font-semibold">Contact Me</h1>
+      <p className="text-lg text-gray-600">Please fill out the form below to contact me.</p>
+      <div className="flex flex-col items-center justify-center mt-8">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-gray-100 w-full max-w-md px-8 py-6 rounded-lg shadow-md"
+        >
+          <h2 className="text-xl font-semibold mb-4">Send Your Message</h2>
+
+          {/* Name Input */}
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-gray-700">
+              Full Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Enter your full name"
+              className="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              {...register("name", { required: true })}
+            />
+            {errors.name && (
+              <span className="text-red-500 text-sm mt-1">Full Name is required</span>
+            )}
+          </div>
+
+          {/* Email Input */}
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-gray-700">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              className="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              {...register("email", { required: true })}
+            />
+            {errors.email && (
+              <span className="text-red-500 text-sm mt-1">Email is required</span>
+            )}
+          </div>
+
+          {/* Message Input */}
+          <div className="mb-6">
+            <label htmlFor="message" className="block text-gray-700">
+              Message
+            </label>
+            <textarea
+              id="message"
+              placeholder="Enter your message"
+              className="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              rows="5"
+              {...register("message", { required: true })}
+            ></textarea>
+            {errors.message && (
+              <span className="text-red-500 text-sm mt-1">Message is required</span>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className={`w-full px-4 py-2 text-white font-semibold rounded-lg shadow-md ${
+              isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+            }`}
+          >
+            {isLoading ? "Sending..." : "Send"}
+          </button>
+        </form>
       </div>
-    </>
+    </div>
   );
 }
