@@ -11,11 +11,11 @@ export default function Home() {
   return (
     <>
       <div name="Home" className="max-w-screen-2xl container mx-auto px-4 md:px-20 my-20">
-        <div className="flex flex-col md:flex-row items-center md:items-start">
+        <div className="flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0">
           {/* Text Section */}
           <div className="md:w-1/2 space-y-6 order-2 md:order-1">
             <span className="text-xl">Welcome to My Feed</span>
-            <div className="flex space-x-2 text-2xl md:text-4xl">
+            <div className="flex flex-wrap space-x-2 text-2xl md:text-4xl">
               <h2>Hello, I'm a</h2>
               <ReactTyped
                 className="text-red-700 font-bold"
