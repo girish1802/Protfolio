@@ -1,9 +1,7 @@
 import React from "react";
 
 import reactjs from "../../public/images/react_logo.png";
-import node from "../../public/images/node_logo.png";
-import mongo from "../../public/images/mongodb_logo.png";
-import java from "../../public/images/java_logo.png";  
+import mern from "../../public/images/MERN_stack.jpg";
 
 export default function Portfolio() {
   const Carditems = [
@@ -11,21 +9,17 @@ export default function Portfolio() {
       id: 1,
       logo: reactjs,
       name: "ReactJS",
+      sourcecode: "https://github.com/girish1802/Protfolio",
+      description:
+        "Created a responsive and visually appealing portfolio website to highlight skills, projects, and accomplishments effectively.",
     },
     {
       id: 2,
-      logo: node,
-      name: "NodeJS",
-    },
-    {
-      id: 3,
-      logo: mongo,
-      name: "MongoDB",
-    },
-    {
-      id: 4,
-      logo: java,
-      name: "Java",
+      logo: mern,
+      name: "MERN",
+      sourcecode: "https://github.com/girish1802/CRUD_MERN",
+      description:
+        "A MERN stack CRUD operation refers to implementing Create, Read, Update, and Delete functionality in an application using the MERN stack components.",
     },
   ];
 
@@ -41,7 +35,7 @@ export default function Portfolio() {
             <span className="underline font-semibold">Featured Projects</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 my-5 gap-5">
-            {Carditems.map(({ id, logo, name }) => (
+            {Carditems.map(({ id, logo, name, description, sourcecode }) => (
               <div
                 className="md:max-w-[300px] rounded-lg border-[2px] hover:scale-105 duration-300 p-4 cursor-pointer shadow-lg"
                 key={id}
@@ -53,16 +47,14 @@ export default function Portfolio() {
                     className="w-[120px] h-[120px] mx-auto rounded-full border-[2px] p-1 object-contain"
                   />
                   <h2 className="font-bold text-2xl mt-3 mb-2">{name}</h2>
-                  <p className="text-sm text-gray-700">
-                    A brief description about {name} and its use in projects.
-                  </p>
+                  <p className="text-sm text-gray-700">{description}</p>
                   <div className="flex flex-wrap justify-center gap-4 mt-4">
-                    <button className="font-bold text-white bg-blue-500 rounded px-4 py-2 hover:bg-blue-600 transition-transform w-full sm:w-auto">
-                      Video
-                    </button>
-                    <button className="font-bold text-white bg-green-500 rounded px-4 py-2 hover:bg-green-600 transition-transform w-full sm:w-auto">
+                    <a
+                      href={sourcecode}
+                      className="font-bold text-white bg-green-500 rounded px-4 py-2 hover:bg-green-600 transition-transform w-full sm:w-auto"
+                    >
                       Source Code
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -74,3 +66,5 @@ export default function Portfolio() {
     </>
   );
 }
+
+

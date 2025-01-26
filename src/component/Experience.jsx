@@ -14,8 +14,8 @@ export default function Experience() {
     { id: 3, logo: javascript, name: "JavaScript" },
     { id: 4, logo: reactjs, name: "React.js" },
     { id: 5, logo: node, name: "Node.js" },
-    { id: 6, logo: java, name: "Java" },
-    { id: 7, logo: mongo, name: "MongoDB" },
+    
+    { id: 6, logo: mongo, name: "MongoDB" },
   ];
 
   return (
@@ -27,7 +27,7 @@ export default function Experience() {
         <div className="text-center">
           <h1 className="text-3xl font-semibold">Experience</h1>
           <p className="text-lg md:text-xl mt-2">
-            I have over 1 year of experience working with the following technologies.
+            I have over 4 Month of experience working with the following technologies.
           </p>
         </div>
 
