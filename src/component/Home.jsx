@@ -1,5 +1,5 @@
 import React from "react";
-import pic from "../../public/images/profil.jpg";
+import pic from "../../public/images/profile.jpeg";
 import { ReactTyped } from "react-typed";
 import { FaFacebook, FaLinkedin, FaReact } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";

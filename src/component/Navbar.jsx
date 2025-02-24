@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import pic from "../../public/images/profil.jpg";
+import pic from "../../public/images/profile.jpeg";
 import { IoIosClose } from "react-icons/io";
 import { FiMenu } from "react-icons/fi";
 import { Link } from "react-scroll";

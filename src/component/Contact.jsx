@@ -21,6 +21,7 @@ export default function Contact() {
     try {
       await axios.post("https://getform.io/f/avrrjowa", userInfo);
       toast.success("Your message has been sent!");
+     
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong. Please try again.");
@@ -98,7 +99,7 @@ export default function Contact() {
               isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
             }`}
           >
-            {isLoading ? "Sending..." : "Send"}
+            {isLoading?  "Sending..." : "Send"}
           </button>
         </form>
       </div>
